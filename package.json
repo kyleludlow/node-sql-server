@@ -1,0 +1,17 @@
+{
+  "name": "quick-node",
+  "version": "1.0.0",
+  "description": "quick node REST API for frontend testing",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Kyle Ludlow",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "underscore": "^1.8.3"
+  }
+}
