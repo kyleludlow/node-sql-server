@@ -8,3 +8,5 @@ This app is formatted using [StandardJS](https://github.com/feross/standard) sty
 * express
 * body-parser
 * underscore
+
+You can learn more about me and my code at [kyleludlow.io](http://www.kyleludlow.io). I'm available for hire!
