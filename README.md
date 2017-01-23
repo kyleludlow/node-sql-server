@@ -13,5 +13,8 @@ This app is formatted using [StandardJS](https://github.com/feross/standard) sty
 * pg
 * sequelize
 * sqlite3
+* bcrypt
+* crypto-js
+* jsonwebtoken
 
 You can learn more about me and my code at [kyleludlow.io](http://www.kyleludlow.io). I'm available for hire!
