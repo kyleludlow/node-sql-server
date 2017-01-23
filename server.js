@@ -5,7 +5,6 @@ var _ = require('underscore')
 var db = require('./db.js')
 var middleware = require('./middleware')(db)
 
-
 var app = express()
 var PORT = process.env.PORT || 3000
 
@@ -57,7 +56,11 @@ app.post('/todos', function (req, res) {
   var body = _.pick(req.body, 'description', 'completed')
 
   db.todo.create(body).then(function (todo) {
-    res.json(todo.toJSON())
+    req.user.addTodo(todo).then(function () {
+      return todo.reload()
+    }).then(function (todo) {
+      res.json(todo.toJSON())
+    })
   }, function (err) {
     res.status(400).json(err)
   })
