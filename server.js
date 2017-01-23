@@ -6,15 +6,13 @@ var db = require('./db.js')
 var app = express()
 var PORT = process.env.PORT || 3000
 
-var todos = []
-var todoNextId = 1
-
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
   res.send('Root.')
 })
 
+// TODO ROUTES
 app.get('/todos', function (req, res) {
   var query = req.query
   var where = {}
@@ -107,6 +105,17 @@ app.put('/todos/:id', function (req, res) {
     }
   }, function () {
     res.status(500).send()
+  })
+})
+
+// USER ROUTES
+app.post('/users', function (req, res) {
+  var body = _.pick(req.body, 'email', 'password')
+
+  db.user.create(body).then(function (user) {
+    res.json(user.toJSON())
+  }, function (err) {
+    res.status(400).json(err)
   })
 })
 
