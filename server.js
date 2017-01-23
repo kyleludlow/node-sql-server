@@ -119,6 +119,16 @@ app.post('/users', function (req, res) {
   })
 })
 
+app.post('/users/login', function (req, res) {
+  var body = _.pick(req.body, 'email', 'password')
+
+  db.user.authenticate(body).then(function (user) {
+    res.json(user.toPublicJSON())
+  }, function () {
+    res.status(401).send()
+  })
+})
+
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     console.log(`Server started on PORT: ${PORT}!`)
