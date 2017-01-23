@@ -59,7 +59,7 @@ app.get('/todos/:id', middleware.requireAuthentication, function (req, res) {
   })
 })
 
-app.post('/todos', function (req, res) {
+app.post('/todos', middleware.requireAuthentication, function (req, res) {
   var body = _.pick(req.body, 'description', 'completed')
 
   db.todo.create(body).then(function (todo) {
@@ -73,7 +73,7 @@ app.post('/todos', function (req, res) {
   })
 })
 
-app.delete('/todos/:id', function (req, res) {
+app.delete('/todos/:id', middleware.requireAuthentication, function (req, res) {
   var todoId = parseInt(req.params.id, 10)
 
   db.todo.destroy({
