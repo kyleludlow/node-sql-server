@@ -1,7 +1,6 @@
 var db = require('../../db.js')
 var _ = require('lodash')
 
-
 exports.getTodos = function (req, res) {
   var query = req.query
   var where = {
@@ -26,8 +25,6 @@ exports.getTodos = function (req, res) {
     res.status(500).send()
   })
 }
-
-
 
 exports.getTodoById = function (req, res) {
   var todoId = parseInt(req.params.id, 10)
@@ -82,7 +79,6 @@ exports.deleteTodo = function (req, res) {
     res.status(500).send()
   })
 }
-
 
 exports.putTodo = function (req, res) {
   var todoId = parseInt(req.params.id, 10)
