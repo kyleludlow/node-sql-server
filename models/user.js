@@ -1,4 +1,5 @@
 var bcrypt = require('bcrypt')
+var _ = require('underscore')
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define('user', {
@@ -29,6 +30,20 @@ module.exports = function (sequelize, DataTypes) {
         this.setDataValue('password', value)
         this.setDataValue('salt', salt)
         this.setDataValue('password_hash', hashedPassword)
+      }
+    }
+  }, {
+    hooks: {
+      beforeValidate: function (user, options) {
+        if (typeof user.email === 'string') {
+          user.email = user.email.toLowerCase()
+        }
+      }
+    },
+    instanceMethods: {
+      toPublicJSON: function () {
+        var json = this.toJSON()
+        return _.pick(json, 'id', 'email', 'createdAt', 'updatedAt')
       }
     }
   })
